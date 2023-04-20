@@ -11,9 +11,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @if (auth()->user()->role_id == 1)
-                       <div class="text-2xl font-bold text-neutral-600">
-                        {{ __("Resived Aplication") }}
-                    </div> 
+                        <div class="text-2xl font-bold text-neutral-600">
+                            {{ __('Resived Aplication') }}
+                        </div>
 
 
                         <!-- component -->
@@ -29,7 +29,8 @@
                                     </div>
                                     <div class="flex items-center space-x-8">
                                         <button
-                                            class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">id: 2</button>
+                                            class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">id:
+                                            2</button>
                                         <div class="text-xs text-neutral-500">20.10.2022, 22:11</div>
                                     </div>
                                 </div>
@@ -65,7 +66,8 @@
                                     </div>
                                     <div class="flex items-center space-x-8">
                                         <button
-                                            class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">id: 2</button>
+                                            class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">id:
+                                            2</button>
                                         <div class="text-xs text-neutral-500">20.10.2022, 22:11</div>
                                     </div>
                                 </div>
@@ -89,7 +91,35 @@
                             </div>
                         </div>
                     @else
-                        {{ __("You're Client!") }}
+                        <!-- component -->
+                        <div class='flex items-center justify-center '>
+                            <div class='w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'>
+                                <div class='max-w-md mx-auto space-y-6'>
+
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <h2 class="text-2xl font-bold ">Submit your application</h2>
+
+                                        <hr class="my-6">
+                                        <label class="uppercase text-sm font-bold opacity-70">Subject</label>
+                                        <input type="text" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded border-2 border-slate-200 focus:border-slate-600 focus:outline-none">
+
+                                        
+                                        <label class="uppercase text-sm font-bold opacity-70">message</label>
+                                        <textarea name="message" id="" cols="30" rows="5"  class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded border-2 border-slate-200 focus:border-slate-600 focus:outline-none"></textarea>
+                                        
+                                        
+                                        <label class="uppercase text-sm font-bold opacity-70">file upload</label>
+                                        <input type="file" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded border-2 border-slate-200 focus:border-slate-600 focus:outline-none">
+
+                                        <input type="submit"
+                                            class="py-3 px-6 my-2 bg-emerald-500 text-white font-medium rounded"
+                                            value="Send">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                 </div>
