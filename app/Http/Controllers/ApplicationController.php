@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Mail\ApplicationCreated;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
@@ -14,6 +15,13 @@ class ApplicationController extends Controller
 
     public function store(Request $request)
     {
+
+        if( $this->chackDay()){
+           return redirect()->back()->with('message','You can create only 1 application a day');
+        }
+       
+
+
         if($request->hasFile('file'))
         {
             $name=$request->file('file')->getClientOriginalName();
@@ -38,5 +46,20 @@ class ApplicationController extends Controller
   
 
     return redirect()->back();
+}
+
+protected function chackDay()
+{
+    if(auth()->user()->applications()->latest()->first()==null){
+        return false;
+    }
+    $last_application=auth()->user()->applications()->latest()->first();
+    $last_data=Carbon::parse($last_application->created_at)->format('Y.m.d');
+    $today=Carbon::now()->format('Y.m.d');
+
+    if($last_data==$today){
+        return true;
+    }
+
 }
 }
